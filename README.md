@@ -1,1 +1,2 @@
-# select_test_RNA
+# Selecting Ideal Synthetic RNA Sequences for Testing Purposes
+
