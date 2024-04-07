@@ -19,7 +19,21 @@ Specifically, this workflow achieves the following:
 # Pipeline
 
 ## 1. Generating random RNA sequences 
-The script `random_RNA_generator.py` takes inputs: `length` (the number of nucleotides in each sequence), `required` (the set of nucleotides whose content you want to control), and `percent` (the proportion of the sequence you want the required nucleotides to make up). 
+The script, `random_RNA_generator.py`, generates random RNA sequences with customizable composition. 
+
+It takes four inputs:
+* `length` (length of generated sequence),
+* `required_nucleotides` (a string containing the nucleotides whose count you want to control),
+* `required_ratio` (the proportion of the total nucleotides which are from the `required_nucleotides` set), and
+* `num_sequences` (number of unique sequences to generate).
+
+The output is a set containing the specified number of unique RNA sequences. 
+
+Example use:
+`sequences = random_rna_generator(10, 'GC', 0.5, 5)
+print(sequences)`
+
+This generates 5 unique RNA sequences of length 10 and with 50% GC content.
 
 
 ## 2. RNAFold
