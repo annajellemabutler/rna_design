@@ -19,6 +19,8 @@ Specifically, this workflow achieves the following:
 # Pipeline
 
 ## 1. Generating random RNA sequences 
+The script `random_RNA_generator.py` takes inputs: `length` (the number of nucleotides in each sequence), `required` (the set of nucleotides whose content you want to control), and `percent` (the proportion of the sequence you want the required nucleotides to make up). 
+
 
 ## 2. RNAFold
 `RNAsubopt` calculates all suboptimal secondary structures within a given energy range above the MFE structure. Be careful, because the number of structures returned grows exponentially with sequence length and energy range. 
