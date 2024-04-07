@@ -1,6 +1,6 @@
 from random import choice, shuffle
 
-def random_rna(length, required_nucleotides, required_ratio, num_sequences):
+def random_rna_generator(length, required_nucleotides, required_ratio, num_sequences):
     unique_sequences = set()
     while len(unique_sequences) < num_sequences:
         required_nucleotide_count = round(required_ratio * length) 
@@ -10,6 +10,3 @@ def random_rna(length, required_nucleotides, required_ratio, num_sequences):
         shuffle(sequence) # randomize the order
         unique_sequences.add(''.join(sequence))
     return unique_sequences
-
-sequences = random_rna(10, 'GC', 0.5, 20)
-print(sequences)
