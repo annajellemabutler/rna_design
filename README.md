@@ -1,6 +1,4 @@
-This is a git test
-
-Ã# RNA Sequence Optimization 
+# RNA Sequence Optimization 
 
 This repository contains the code for a project aimed at identifying primary RNA sequences which meet particular criteria required for the testing of a novel enzymatic probe for high-throughput RNA structure determination. The project formed part of a five-week laboratory rotation I completed in Prof. Sid Dey's lab at the University of California, Santa Barbara. 
 
