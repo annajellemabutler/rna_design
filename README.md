@@ -1,11 +1,11 @@
 # RNA Sequence Optimization 
 
-This repository contains the code for a project aimed at identifying primary RNA sequences which meet particular criteria required for the testing of a novel enzymatic probe for high-throughput RNA structure determination. The project formed part of a five-week laboratory rotation I completed in Prof. Sid Dey's lab at the University of California, Santa Barbara. 
+This repository contains code designed to identify primary RNA sequences which meet particular criteria, namely length, GC content, and predicted secondary structure(s). Its intended application is the design of synthetic RNA molecules for the testing of a novel enzymatic probe for high-throughput RNA structure determination. The project formed part of a five-week laboratory rotation I completed in Prof. Sid Dey's lab at the University of California, Santa Barbara. 
 
 Specifically, this workflow achieves the following:
 1. Generates random RNA sequences with user-defined length and GC content
-2. Employs UNAFold OR UFold or RNAFold to predict the secondary structures and associated minimum free energy values (ΔG) for each sequence.
-3. Returns only the sequences which either have only one predicted secondary structure (and one associated ΔG) or have two or more possible structures with differences in ΔG > 2 kcal/mol. 
+2. Employs RNAFold to predict possible secondary structures and associated minimum free energy values (ΔG) for each sequence.
+3. Filters for structures with only a single stem loop,  only the sequences which either have only one predicted secondary structure (and one associated ΔG) or have two or more possible structures with differences in ΔG > 2 kcal/mol. 
 
 ## Usage
 1. Clone the repository to your machine.
@@ -39,4 +39,8 @@ This generates 5 unique RNA sequences of length 10 and with 50% GC content.
 ## 2. RNAFold
 `RNAsubopt` calculates all suboptimal secondary structures within a given energy range above the MFE structure. Be careful, because the number of structures returned grows exponentially with sequence length and energy range. 
 * Need to determine an upper limit for the energy range (i.e., if the optimal structure is -20, do we want to know about structures that are -10, or -5?)
-* Need to somehow convert the output into readable information, so that we can extract structures where the difference in free energy is > 2. 
+* Need to somehow convert the output into readable information, so that we can extract structures where the difference in free energy is > 2.
+
+***
+* Finished Sun Apr 7 on python subopt.py (VSCODE) trying to figure out which regex pattern accurately describes what we want (single stem loop).
+* Next steps I think is to turn the script into a loop, but using RNAfold instead of RNAsubopt. Stop the script when you find a sequence where the MFE structure only has one stem loop. Then get all the subopt structures and filter through those. 
