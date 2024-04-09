@@ -1,9 +1,12 @@
 # RNA Sequence Optimization 
 
 ## PROGRESS UPDATE 
-
-3pm just worked out how to solo-out the dot-bracket structure (in tester_MFE.py). Now, want to incorporate that into find_MFE.py and see if that makes the pattern found. 
-8am Currently trying to figure out the regex pattern to match dot-bracket structure indicating only one stem loop (working in `regex_pattern.py` on cluster). 
+04/09 
+11:30am find_MFE can now run the identified sequence through RNAsubopt. Next step is to turn output into dataframe, and determine whether the next most likely sequence has dG more than 2 kcal/mole away from the MFE structure. If not, move on with the loop, otherwise, add the sequence to a set of optimized sequences. 
+11am merged tester_MFE and find_MFE. Find_MFE now can successfully find a structure matching the pattern. Next, we should assign that sequence + structure to a file and then run RNAsubopt on it. 
+04/08
+* 3pm just worked out how to solo-out the dot-bracket structure (in tester_MFE.py). Now, want to incorporate that into find_MFE.py and see if that makes the pattern found. 
+* 8am Currently trying to figure out the regex pattern to match dot-bracket structure indicating only one stem loop (working in `regex_pattern.py` on cluster). 
 
 ## TO-DO LIST
 * download basic things to base environment (python, nano)
