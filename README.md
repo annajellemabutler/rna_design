@@ -1,16 +1,20 @@
 # RNA Sequence Optimization 
 
-## PROGRESS UPDATE 
-04/09 
-11:30am find_MFE can now run the identified sequence through RNAsubopt. Next step is to turn output into dataframe, and determine whether the next most likely sequence has dG more than 2 kcal/mole away from the MFE structure. If not, move on with the loop, otherwise, add the sequence to a set of optimized sequences. 
-11am merged tester_MFE and find_MFE. Find_MFE now can successfully find a structure matching the pattern. Next, we should assign that sequence + structure to a file and then run RNAsubopt on it. 
-04/08
+## PROGRESS UPDATES 
+
+### 04/09 
+* 6:30pm re-did into functions. still haven't worked out how to get sequences that match dG requirements. 
+* 5pm final.py ready to go but no sequences match the requirements. Have been modifying the pattern to try and find structures that have lower dG in the hopes that the suboptimal structure might be further away
+  
+* 11:30am find_MFE can now run the identified sequence through RNAsubopt. Next step is to turn output into dataframe, and determine whether the next most likely sequence has dG more than 2 kcal/mole away from the MFE structure. If not, move on with the loop, otherwise, add the sequence to a set of optimized sequences. 
+* 11am merged tester_MFE and find_MFE. Find_MFE now can successfully find a structure matching the pattern. Next, we should assign that sequence + structure to a file and then run RNAsubopt on it. 
+### 04/08
 * 3pm just worked out how to solo-out the dot-bracket structure (in tester_MFE.py). Now, want to incorporate that into find_MFE.py and see if that makes the pattern found. 
 * 8am Currently trying to figure out the regex pattern to match dot-bracket structure indicating only one stem loop (working in `regex_pattern.py` on cluster). 
 
 ## TO-DO LIST
 * download basic things to base environment (python, nano)
-* 
+* check if there's a more efficient way to loop things 
 
 This repository contains code designed to identify primary RNA sequences which meet particular criteria regarding their length, GC content, and predicted secondary structure(s). Its intended application was in the design of synthetic RNA molecules on which a novel enzymatic probe for high-throughput RNA structure determination could be tested. The project formed part of a five-week laboratory rotation I completed in Prof. Sid Dey's lab at the University of California, Santa Barbara. 
 
