@@ -1,65 +1,32 @@
 # RNA Sequence Optimization 
 
 ## PROGRESS UPDATES 
+As of 04/10, the script works great. The next step is to figure out which pattern will (a) minimize the free energy of the optimal structure and (b) ensure the suboptimal structures are much less likely to exist. 
 
-### 04/09 
-* 6:30pm re-did into functions. still haven't worked out how to get sequences that match dG requirements. 
-* 5pm final.py ready to go but no sequences match the requirements. Have been modifying the pattern to try and find structures that have lower dG in the hopes that the suboptimal structure might be further away
-  
-* 11:30am find_MFE can now run the identified sequence through RNAsubopt. Next step is to turn output into dataframe, and determine whether the next most likely sequence has dG more than 2 kcal/mole away from the MFE structure. If not, move on with the loop, otherwise, add the sequence to a set of optimized sequences. 
-* 11am merged tester_MFE and find_MFE. Find_MFE now can successfully find a structure matching the pattern. Next, we should assign that sequence + structure to a file and then run RNAsubopt on it. 
-### 04/08
-* 3pm just worked out how to solo-out the dot-bracket structure (in tester_MFE.py). Now, want to incorporate that into find_MFE.py and see if that makes the pattern found. 
-* 8am Currently trying to figure out the regex pattern to match dot-bracket structure indicating only one stem loop (working in `regex_pattern.py` on cluster). 
-
-## TO-DO LIST
-* download basic things to base environment (python, nano)
-* check if there's a more efficient way to loop things
-* fix up readme file and share with pankaj 
+*** 
 
 This repository contains code designed to identify primary RNA sequences which meet particular criteria regarding their length, GC content, and predicted secondary structure(s). Its intended application was in the design of synthetic RNA molecules on which a novel enzymatic probe for high-throughput RNA structure determination could be tested. The project formed part of a five-week laboratory rotation I completed in Prof. Sid Dey's lab at the University of California, Santa Barbara. 
 
-Specifically, this workflow achieves the following:
-1. Generates random RNA sequences with user-defined length and GC content
-2. Employs RNAFold to predict (a) the minimum free energy structure and (b) possible suboptimal secondary structures for each sequence. 
-3. Filters for structures with only a single stem loop,  only the sequences which either have only one predicted secondary structure (and one associated ΔG) or have two or more possible structures with differences in ΔG > 2 kcal/mol. 
-
-## Usage
-1. Clone the repository to your machine.
-2. Install any dependencies required.
-3. Execute the main program with your user-defined input to generate and analyze sequences.
-4. Review the output files containing the sequences meeting the desired criteria.
+## Overview
+1. An RNA sequence is randomly generated according to user-defined rules for length and GC content.
+2. The minimum free energy secondary structure is predicted and compared to the user-defined secondary structure (`desired_secondary_structure`).
+3. If the structure is a match, the dG of the optimal structure is compared with the dG of the nextmost suboptimal secondary structure.
+4. If the absolute difference in dG is greater than a user-defined value (or if there is no suboptimal structure to compare to), the sequence is returned. Else, the loop begins again. 
 
 ## Dependencies
 * ViennaRNA
 
-# Pipeline
+## Pipeline
 
 ## 1. Generating random RNA sequences 
-The script, `random_RNA_generator.py`, generates random RNA sequences with customizable composition. 
+The function, `random_RNA_generator`, generates random RNA sequences of customizable composition. It takes three inputs: `length` (desired length of generated sequence),`required_nucleotides` (a string containing the nucleotides whose count you want to control, e.g., `'GC'`), and `required_ratio` (the proportion of the total nucleotides which should be taken from the `required_nucleotides` set). 
 
-It takes four inputs:
-* `length` (length of generated sequence),
-* `required_nucleotides` (a string containing the nucleotides whose count you want to control),
-* `required_ratio` (the proportion of the total nucleotides which are from the `required_nucleotides` set), and
-* `num_sequences` (number of unique sequences to generate).
+## 2. Predicting secondary structure
+The function, `predict_structure`, runs `RNAfold` on the generated RNA sequence. The output is `dot_bracket_structure` (the minimum free energy structure in dot-bracket notation) and `mfe` (the minimum free energy value in kcal/mole). 
 
-The output is a set containing the specified number of unique RNA sequences. 
+## 3. Comparing dG with the next most-optimal structure 
+If the predicted MFE structure matches the user-defined pattern, the function, `predict_subopt`, runs the RNA sequence through `RNAsubopt` to obtain the structure (`dot_bracket_structure`) and dG (`dG`) of the most optimal structure of the suboptimal ensemble. 
 
-Example use:
-`sequences = random_rna_generator(10, 'GC', 0.5, 5)
-print(sequences)`
-
-This generates 5 unique RNA sequences of length 10 and with 50% GC content.
+Arguments are . Be careful with -e; the number of structures returned grows exponentially with sequence length and energy range, and we only need the top two lines. 
 
 
-## 2. RNAFold
-* Output of `RNAfold` is the MFE (most likely) secondary structure in dot-bracket notation.
-* First step is to only continue the loop if the MFE contains only one stem loop. 
-`RNAsubopt` calculates all suboptimal secondary structures within a given energy range above the MFE structure. Be careful, because the number of structures returned grows exponentially with sequence length and energy range. 
-* Need to determine an upper limit for the energy range (i.e., if the optimal structure is -20, do we want to know about structures that are -10, or -5?)
-* Need to somehow convert the output into readable information, so that we can extract structures where the difference in free energy is > 2.
-
-***
-* Finished Sun Apr 7 on python subopt.py (VSCODE) trying to figure out which regex pattern accurately describes what we want (single stem loop).
-* Next steps I think is to turn the script into a loop, but using RNAfold instead of RNAsubopt. Stop the script when you find a sequence where the MFE structure only has one stem loop. Then get all the subopt structures and filter through those. 
