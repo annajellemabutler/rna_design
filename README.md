@@ -14,7 +14,8 @@
 
 ## TO-DO LIST
 * download basic things to base environment (python, nano)
-* check if there's a more efficient way to loop things 
+* check if there's a more efficient way to loop things
+* fix up readme file and share with pankaj 
 
 This repository contains code designed to identify primary RNA sequences which meet particular criteria regarding their length, GC content, and predicted secondary structure(s). Its intended application was in the design of synthetic RNA molecules on which a novel enzymatic probe for high-throughput RNA structure determination could be tested. The project formed part of a five-week laboratory rotation I completed in Prof. Sid Dey's lab at the University of California, Santa Barbara. 
 
