@@ -1,6 +1,15 @@
 # RNA Sequence Optimization 
 
+# to-do list 04/25
+* Check that code still runs on lax pattern
+* Read up on how other papers have generated single-stable RNA molecules 
+* For sid meeting note
+  * Mfold webserver outputs a reduced (hopefully representative) list of suboptimal structures. I tried mfold on command line, doesn't run correctly, so would have to do manually to find sequences. 
+  * All other options only have webservers (Quikfold, UNAfold), except for RNAstructure, which has similar output to RNAfold
+  * Essentially, RNAsubopt uses MFE prediction, which is not necessarily to say that all the structures outputted are plausible
+  
 ## PROGRESS UPDATES 
+
 As of 04/10, the script works great. The next step is to figure out which pattern will (a) minimize the free energy of the optimal structure and (b) ensure the suboptimal structures are much less likely to exist. 
 
 *** 
