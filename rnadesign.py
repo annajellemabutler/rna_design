@@ -33,7 +33,7 @@ dG_difference = 2
 
 # Define number of sequences
 batch_size=50 # number of sequences to generate before checking primary constraints
-required_sequences = 6 # final number of sequences you want to get out
+required_sequences = 1 # final number of sequences you want to get out
 
 ################################################################
 ### Functions ###
@@ -234,5 +234,5 @@ test_set = main(required_sequences=required_sequences)
 
 test_set = test_set.sort_values(by="dG")
 timestamp = datetime.datetime.now().strftime("%m-%d_%H-%M") 
-test_set.to_csv(f"{output_directory}/test_set_{timestamp}", index=False)
+test_set.to_csv(f"{output_directory}/test_set_{timestamp}.csv", index=False)
 print(f"{len(test_set)} sequences match all criteria; saved to '{output_directory}'")
