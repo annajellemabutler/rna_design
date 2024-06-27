@@ -2,17 +2,17 @@
 
 Script generates semi-random primary RNA sequences under specific primary and secondary structure constraints. Originally used in the design of synthetic RNA molecules on which a novel high-throughput RNA structure determination method was tested and validated. 
 
-### Constraints
-* Primary structure constraints
+### Project-specific constraints
+* Primary structure
   * 68 bp length
-  * ~50% overall GC content
-  * 3' tail of 15 adenosines
+  * 50% overall GC content
+  * Long (≥ 10 nucleotides) 3' poly-A tail
   * Reasonable distribution of cytosines, including
     * ≥ 1 cytosine in the loop region
     * 2-3 cytosines in the 5' tail, including at least a few with preceding adenosine
     * 5-6 cytosines in the stem, but 0 in the first 2 bp
 * Energy & folding constraints
-  * Predicted minimum free energy (MFE) structure is a single stem-loop (with no bulges or interior loops)
+  * Predicted minimum free energy (MFE) structure is a single stem-loop with no bulges or interior loops
   * Predicted suboptimal structures have absolute Gibbs free energy values ≤ 2 kcal/mole smaller than the MFE structure
 
 ### Overview
