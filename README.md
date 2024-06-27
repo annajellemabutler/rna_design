@@ -3,7 +3,6 @@
 Script generates semi-random primary RNA sequences under specific primary and secondary structure constraints. Originally used in the design of synthetic RNA molecules on which a novel high-throughput RNA structure determination method was tested and validated. 
 
 ### Constraints
-`rna_design.py` generates a `.csv` file containing RNA sequences which match both:
 * Primary structure constraints
   * 68 bp length
   * ~50% overall GC content
@@ -16,11 +15,10 @@ Script generates semi-random primary RNA sequences under specific primary and se
   * Predicted minimum free energy (MFE) structure is a single stem-loop (with no bulges or interior loops)
   * Predicted suboptimal structures have absolute Gibbs free energy values ≤ 2 kcal/mole smaller than the MFE structure
 
-### Pipeline
-This is completed in the following steps:
-1. An RNA sequence with the specified length and GC content is randomly generated. These sequences contain higher GC content in the stem region to introduce bias towards forming stable stem loops. 
-2. The minimum free energy secondary structure is predicted using `RNAfold` and compared to the desired secondary structure (by default, a perfect stem-loop). 
-3. If the structure is a match, the free energy of the optimal structure is compared with the free energy of the nextmost suboptimal secondary structure (generated using `RNAsubopt`). Only if the absolute difference in dG is greater than the specified value is the sequence kept.
-4. The sequence set is filtered for those which satisfy the primary structure constraints (nucleotide counts, etc.).
-
+### Overview
+1. An RNA sequence with the specified length and GC content is randomly generated. GC content is increased in the stem region to bias the region towards forming stable stem loops. 
+2. The minimum free energy secondary structure is predicted using `RNAfold` and compared to the desired secondary structure (a perfect stem-loop, by default). 
+3. If the structure is a match, the free energy (dG) of the optimal structure is compared with the dG of the nextmost suboptimal secondary structure (generated using `RNAsubopt`), and the sequence is retained only if the absolute difference in dG is greater than a specified value. 
+4. The sequence set is filtered for those which satisfy the remaining primary structure constraints.
+5. A `.csv` file containing the matching sequences is saved. 
 
