@@ -1,9 +1,7 @@
-# RNA Design
+## RNA Design
 
-## Project Outline
-This script identifies primary RNA sequences which meet very specific primary and secondary structure constraints. It was used to design synthetic RNA molecules on which a novel high-throughput RNA structure determination method was tested and validated. The project formed part of a five-week laboratory rotation I completed in Prof. Sid Dey's lab at the University of California, Santa Barbara. 
+Script generates semi-random primary RNA sequences under specific primary and secondary structure constraints. Originally used in the design of synthetic RNA molecules on which a novel high-throughput RNA structure determination method was tested and validated. 
 
-## Script Overview 
 ### Constraints
 `rna_design.py` generates a `.csv` file containing RNA sequences which match both:
 * Primary structure constraints
